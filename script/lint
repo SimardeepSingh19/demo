@@ -35,7 +35,7 @@ do
         temp=$(yq eval '.project.ingress' $i)
         echo $temp
         for j in $temp; do
-                if[[$(echo $(git grep --count $output  values-prod.yaml) | wc -l) == 0]]
+                if [[$(echo $(git grep --count $output  values-prod.yaml) | wc -l) -eq 0]]
                 then
                     echo "failed"
                     RET=1
