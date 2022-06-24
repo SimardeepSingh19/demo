@@ -34,13 +34,15 @@ do
     then
         temp=$(yq eval '.project.ingress' $i)
         echo $temp
-        for j in $temp; do
-                if [[$(echo $(git grep --count $j $i ) | wc -l) -eq 0]]
-                then
-                    echo "failed"
-                    RET=1
-                    break
-                fi
+        for j in $temp; 
+        do
+            if [[$(echo $(git grep --count $j $i ) | wc -l) -eq 0]]
+            then
+                echo "failed"
+                RET=1
+                break
+            fi
+        done
     fi
 
     if $RET -eq 1
