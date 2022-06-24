@@ -1,3 +1,26 @@
+# #!/bin/sh
+
+# RET=0
+
+# # for i in $(git rev-list "$1".."$2")
+# for i in $(git diff --name-only)
+# do
+#     printf "Checking $i for values file ..."
+#     # if git log -1 --format="%B" $i | grep -qsE "[A-Z]+-[0-9]+"
+#     if echo $i | grep values
+#     then
+#         if yq eval '.project.ingress' $i 
+#         echo "failed"
+#         RET=1
+#     else
+#         echo "looks good..."
+#     fi
+# done
+
+# exit $RET
+
+
+
 #!/bin/sh
 
 RET=0
@@ -9,11 +32,26 @@ do
     # if git log -1 --format="%B" $i | grep -qsE "[A-Z]+-[0-9]+"
     if echo $i | grep values
     then
-        echo "looks ok."
+        temp=$(yq eval '.project.ingress' $i)
+        echo $temp
+        for j in $temp; do
+                if[[$(echo $(git grep --count $output  values-prod.yaml) | wc -l) -eq 0]]
+                        then
+                                echo "failed"
+                                RET=1
+                                break
+                        else
+                                continue
+                fi
     else
-        echo "failed."
-        RET=1
+        echo "looks good..."
     fi
+
+    if $RET -eq 1
+        then
+                break
+        else
+                continue
 done
 
 exit $RET
