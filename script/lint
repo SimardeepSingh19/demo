@@ -36,22 +36,22 @@ do
         echo $temp
         for j in $temp; do
                 if[[$(echo $(git grep --count $output  values-prod.yaml) | wc -l) -eq 0]]
-                    then
-                            echo "failed"
-                            RET=1
-                            break
-                    else
-                        continue
+                then
+                    echo "failed"
+                    RET=1
+                    break
+                else
+                    continue
                 fi
     else
         echo "looks good..."
     fi
 
     if $RET -eq 1
-        then
-                break
-        else
-                continue
+    then
+        break
+    else
+        continue
     fi
 done
 
