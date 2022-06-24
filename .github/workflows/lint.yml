@@ -10,4 +10,4 @@ jobs:
     - uses: actions/checkout@main
     - run: chmod +x script/lint
     - run: brew install yq
-    - run: zsh script/lint 
+    - run: script/lint 
