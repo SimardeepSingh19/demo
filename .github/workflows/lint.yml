@@ -14,4 +14,4 @@ jobs:
     - run: chmod +x script/python.py
     - run: brew install yq
     # - run: script/lint 
-    - run: script/python.py
+    - run: python script/python.py
