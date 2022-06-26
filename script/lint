@@ -4,6 +4,7 @@ RET=0
 
 # for i in $(git rev-list "$1".."$2")
 
+echo pwd
 for i in $(echo $(git diff --name-only  main..feature/check-6))
 do
     printf "Checking $i for values file ..."
