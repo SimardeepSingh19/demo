@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    # - run: chmod +x script/lint
+    - run: chmod +x script/lint
     - run: sudo apt-get update
     - run:  sudo apt-get install python3.6
     - run: chmod +x script/python.py
     - run: brew install yq
-    # - run: script/lint 
+    - run: script/lint 
     - run: python script/python.py
