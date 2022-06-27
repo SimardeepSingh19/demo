@@ -22,6 +22,8 @@ do
                 break
             fi
         done
+    else
+        printf "NOT Found"
     fi
 
     if $RET -eq 1
