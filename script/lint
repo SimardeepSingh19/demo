@@ -9,7 +9,7 @@ for i in $(echo $(git diff --name-only  origin/main HEAD))
 do
     printf "Checking $i for values file ..."
     # if git log -1 --format="%B" $i | grep -qsE "[A-Z]+-[0-9]+"
-    if echo $i | grep values
+    if echo $"{i##*/}" | grep values
     then
         temp=$(yq eval '.project.ingress' $i)
         echo $temp
