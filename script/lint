@@ -1,32 +1,11 @@
-# #!/bin/sh
-
-# RET=0
-
-# # for i in $(git rev-list "$1".."$2")
-# for i in $(git diff --name-only)
-# do
-#     printf "Checking $i for values file ..."
-#     # if git log -1 --format="%B" $i | grep -qsE "[A-Z]+-[0-9]+"
-#     if echo $i | grep values
-#     then
-#         if yq eval '.project.ingress' $i 
-#         echo "failed"
-#         RET=1
-#     else
-#         echo "looks good..."
-#     fi
-# done
-
-# exit $RET
-
-
-
 #!/bin/sh
 
 RET=0
 
 # for i in $(git rev-list "$1".."$2")
-for i in $(echo $(git diff --name-only origin/main feature/check-5))
+
+pwd
+for i in $(echo $(git diff --name-only  origin/main origin/feature/check-6))
 do
     printf "Checking $i for values file ..."
     # if git log -1 --format="%B" $i | grep -qsE "[A-Z]+-[0-9]+"
@@ -36,13 +15,15 @@ do
         echo $temp
         for j in $temp; 
         do
-            if [[$(echo $(git grep --count $j $i ) | wc -l) -eq 0]]
+            if [[$(echo $(git grep --count $i origin/main ) | wc -l) -eq 0]]
             then
                 echo "failed"
                 RET=1
                 break
             fi
         done
+    else
+        printf "NOT Found"
     fi
 
     if $RET -eq 1

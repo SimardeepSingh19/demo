@@ -1,2 +1,20 @@
-
-hello
+project:
+  ingress:
+    annotations:
+      ingressClass: nginx
+    name: admin-tools-prod-external-ingress
+    rules:
+    - host: tools.prod-singapore.mindtickle.com
+      port: 80
+    - host: tools.prod.mindtickle.com
+      port: 80
+    - host: tools.svc.mindtickle.com
+      port: 80
+    - host: tools.backup.mindtickle.com
+      port: 80
+    ssl: true
+    tls_enabled_rules:
+    - tools.prod-singapore.mindtickle.com
+    - tools.prod.mindtickle.com
+    - tools.svc.mindtickle.com
+    visibility: external
