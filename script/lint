@@ -14,7 +14,7 @@ do
         
         temp=$(yq eval '.project.ingress' $i)
         echo $temp
-        echo $(git checkout main)
+        # echo $(git checkout main)
         for j in $temp; 
         do
             if [[$(echo $(git grep --count $j $i ) | wc -l) -eq 0]]
