@@ -15,7 +15,7 @@ do
         echo $temp
         for j in $temp; 
         do
-            if [[$(echo $(git grep --count $j $i ) | wc -l) -eq 0]]
+            if [[$(echo $(git grep --count $i main ) | wc -l) -eq 0]]
             then
                 echo "failed"
                 RET=1
