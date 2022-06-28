@@ -11,11 +11,13 @@ do
     # if git log -1 --format="%B" $i | grep -qsE "[A-Z]+-[0-9]+"
     if echo $i | grep values
     then
+        
         temp=$(yq eval '.project.ingress' $i)
         echo $temp
+        echo $(git checkout main)
         for j in $temp; 
         do
-            if [[$(echo $(git grep --count $i origin/main ) | wc -l) -eq 0]]
+            if [[$(echo $(git grep --count $j $i ) | wc -l) -eq 0]]
             then
                 echo "failed"
                 RET=1
